@@ -1,14 +1,13 @@
 @use "../abstracts/variables" as c;
+@use "../abstracts/mixins" as mix;
 
 .body-container {
-  display: grid;
-  width: 100%;
-  height: 100vh;
-  grid-template-areas:
-    "header header header"
-    "body body body"
-    "footer footer footer";
-  grid-template-rows: 10% 80% 10%;
+  @include mix.gridbox-area(
+    $a: ". header ." ". body ." ". footer .",
+    $gtr: 10% 80% 10%,
+    $gtc: 0 100% 0
+  );
+  @include mix.box-size($w: 100%, $h: 100vh);
 
   header {
     grid-area: header;
@@ -24,11 +23,13 @@
 
   .container {
     height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    @include mix.flexbox($d: column, $jc: center, $ai: center);
     background-color: c.$background;
     color: c.$white;
+  }
+
+  main.container {
+    background-color: c.$white;
+    color: c.$background;
   }
 }
