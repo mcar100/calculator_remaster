@@ -129,8 +129,24 @@ body {
   user-select: none;
 }
 
-/* basic colors */
-/* specific colors */
+/* basic  */
+/* theme  */
+/* situation  */
+button {
+  width: 65px;
+  height: 50px;
+  border: 1px solid #303030;
+  border-radius: 8px;
+  background-color: #555658;
+  border-color: #c8c8c8;
+  font-size: 15px;
+  font-weight: bold;
+  color: #fff;
+}
+button:hover {
+  opacity: 70%;
+}
+
 .body-container {
   display: grid;
   grid-template-areas: ". header ." ". body ." ". footer .";
