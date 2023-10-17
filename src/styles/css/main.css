@@ -132,19 +132,96 @@ body {
 /* basic  */
 /* theme  */
 /* situation  */
+/* screen */
+.screen {
+  text-align: right;
+  padding: 6px;
+}
+
+/* button */
 button {
   width: 65px;
   height: 50px;
-  border: 1px solid #303030;
-  border-radius: 8px;
   background-color: #555658;
-  border-color: #c8c8c8;
+  border: 1px solid #c8c8c8;
+  border-radius: 8px;
   font-size: 15px;
   font-weight: bold;
   color: #fff;
+  justify-self: center;
+  align-self: center;
 }
 button:hover {
   opacity: 70%;
+}
+
+.calculator-container {
+  width: 350px;
+  height: 520px;
+  background-color: #fff;
+}
+.calculator-container .calculator-head {
+  width: 100%;
+  height: 30%;
+  background-color: #fff;
+  border: 1px solid #303030;
+  border-radius: 1px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0px;
+}
+.calculator-container .calculator-head .screen-container {
+  width: 80%;
+  height: 70%;
+  background-color: #fff;
+  border: 1px solid #303030;
+  border-radius: 1px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0px;
+}
+.calculator-container .calculator-head .screen-container .screen--sub {
+  width: 100%;
+  height: 40%;
+  background-color: #fff;
+  font-size: 20px;
+  font-weight: normal;
+  color: #000;
+}
+.calculator-container .calculator-head .screen-container .screen--main {
+  width: 100%;
+  height: 60%;
+  background-color: #fff;
+  font-size: 40px;
+  font-weight: bold;
+  color: #000;
+}
+.calculator-container .calculator-body {
+  width: 100%;
+  height: 70%;
+  background-color: #fff;
+  border: 1px solid #303030;
+  border-radius: 1px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 0px;
+}
+.calculator-container .calculator-body .button-container {
+  width: 80%;
+  height: 80%;
+  background-color: #fff;
+  display: grid;
+  grid-template-rows: 20% 20% 20% 20% 20%;
+  grid-template-columns: 25% 25% 25% 25%;
+  justify-content: center;
+  align-items: center;
+  gap: 0px;
 }
 
 .body-container {
@@ -157,6 +234,7 @@ button:hover {
   gap: 0px;
   width: 100%;
   height: 100vh;
+  background-color: #fff;
 }
 .body-container header {
   grid-area: header;

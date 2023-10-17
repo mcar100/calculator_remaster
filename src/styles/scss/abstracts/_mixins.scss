@@ -1,4 +1,4 @@
-@use "variables" as var;
+@use "variables" as c;
 @mixin position($p: absolute, $t: 0, $b: 0, $l: 0, $r: 0) {
   position: $p;
   top: $t;
@@ -28,24 +28,20 @@
   }
 }
 
-@mixin box-size($w: 100px, $h: 100px) {
+@mixin box-style($w: 100px, $h: 100px, $bgc: c.$basic) {
   width: $w;
   height: $h;
-}
-
-@mixin box-color($bgc: var.$basic, $rc: var.$reverse) {
   background-color: $bgc;
-  border-color: $rc;
 }
 
-@mixin font-style($fs: 10px, $fw: bold, $fc: var.$black) {
+@mixin font-style($fs: 10px, $fw: bold, $fc: c.$black) {
   font-size: $fs;
   font-weight: $fw;
   color: $fc;
 }
 
 // /* border */
-@mixin border($w: 1px, $s: solid, $c: var.$reverse, $r: 1px) {
+@mixin border($w: 1px, $s: solid, $c: c.$reverse, $r: 1px) {
   border: $w $s $c;
   border-radius: $r;
 }
@@ -69,6 +65,12 @@
 @mixin flex-self($js: center, $as: center) {
   justify-self: $js;
   align-self: $as;
+}
+
+@mixin flex-container($w, $h, $bgc: c.$basic, $rc: c.$reverse, $fd: column) {
+  @include box-style($w, $h, $bgc);
+  @include border($c: $rc);
+  @include flexbox($d: $fd);
 }
 
 // /* grid */

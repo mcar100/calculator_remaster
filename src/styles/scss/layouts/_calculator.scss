@@ -1,0 +1,35 @@
+@use "../abstracts/variables" as c;
+@use "../abstracts/mixins" as mix;
+
+.calculator-container {
+  @include mix.box-style(350px, 520px);
+
+  .calculator-head {
+    @include mix.flex-container(100%, 30%);
+    .screen-container {
+      @include mix.flex-container(80%, 70%);
+      .screen--sub {
+        @include mix.box-style(100%, 40%);
+        @include mix.font-style(20px, normal);
+      }
+      .screen--main {
+        @include mix.box-style(100%, 60%);
+        @include mix.font-style(40px);
+      }
+    }
+  }
+
+  .calculator-body {
+    @include mix.box-style(100%, 70%, c.$basic);
+    @include mix.border();
+    @include mix.flexbox();
+
+    .button-container {
+      @include mix.box-style(80%, 80%);
+      @include mix.gridbox-area(
+        $gtr: 20% 20% 20% 20% 20%,
+        $gtc: 25% 25% 25% 25%
+      );
+    }
+  }
+}

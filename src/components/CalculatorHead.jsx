@@ -1,9 +1,12 @@
 import React from "react";
 
-function CalculatorHead() {
+function CalculatorHead({ input, subInput }) {
   return (
     <div className="calculator-head">
-      <div>화면</div>
+      <div className="screen-container">
+        <div className="screen screen--sub">{subInput}</div>
+        <div className="screen screen--main">{input}</div>
+      </div>
     </div>
   );
 }

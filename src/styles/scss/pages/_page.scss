@@ -7,7 +7,7 @@
     $gtr: 10% 80% 10%,
     $gtc: 0 100% 0
   );
-  @include mix.box-size($w: 100%, $h: 100vh);
+  @include mix.box-style($w: 100%, $h: 100vh);
 
   header {
     grid-area: header;

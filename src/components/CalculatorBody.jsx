@@ -27,9 +27,11 @@ function CalculatorBody() {
 
   return (
     <div className="calculator-body">
-      {buttonList.map((btn) => (
-        <Button key={`btn-${btn}`} contents={btn} />
-      ))}
+      <div className="button-container">
+        {buttonList.map((btn) => (
+          <Button key={`btn-${btn}`} contents={btn} />
+        ))}
+      </div>
     </div>
   );
 }
