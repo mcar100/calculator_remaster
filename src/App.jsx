@@ -1,5 +1,5 @@
 import "./App.css";
-import Home from "./pages/Home";
+import Calculator from "./pages/Calculator";
 
 function App() {
   return (
@@ -8,7 +8,7 @@ function App() {
         <h2>Calculator</h2>
       </header>
       <main className="container">
-        <Home />
+        <Calculator />
       </main>
       <footer className="container"></footer>
     </div>

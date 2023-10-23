@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 
-function Button({ contents }) {
-  return <button className="normal-button">{contents}</button>;
+function Button({ contents, handler }) {
+  return (
+    <button className="normal-button" onClick={() => handler(contents)}>
+      {contents}
+    </button>
+  );
 }
 
 export default Button;
