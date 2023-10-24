@@ -5,8 +5,18 @@ import {
 } from "../utils/constants";
 import Button from "./Button";
 
-function CalculatorBody({ setFormula, setError, calculate, reset, load }) {
+function CalculatorBody({
+  setFormula,
+  isError,
+  setError,
+  calculate,
+  reset,
+  load,
+}) {
   const handleNumClick = (value) => {
+    if (isError) {
+      return;
+    }
     setFormula((prev) => {
       const temp = { ...prev };
       if (!temp.operator) {
@@ -23,6 +33,10 @@ function CalculatorBody({ setFormula, setError, calculate, reset, load }) {
   };
 
   const handleBtnClick = (value) => {
+    if (isError && value !== "CE") {
+      return;
+    }
+
     try {
       if (value === "CE") {
         reset();

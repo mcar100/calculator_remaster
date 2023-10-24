@@ -31,11 +31,6 @@ function resetMemory(memory, setMemory) {
     setMemory((prev) => {
       return { ...prev, result: "" };
     });
-  } else {
-    setMemory((prev) => {
-      return { ...prev, result: "", resultArray: [] };
-    });
-    console.log("memory initialized");
   }
 }
 

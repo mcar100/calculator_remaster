@@ -82,6 +82,7 @@ function Calculator() {
       <CalculatorHead input={input} error={error} subInput={subInput} />
       <CalculatorBody
         setFormula={setFormula}
+        isError={error.state}
         setError={setError}
         calculate={handleCalculate}
         reset={handleReset}
