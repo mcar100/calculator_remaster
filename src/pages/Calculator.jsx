@@ -1,8 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { calculator, resetFormula } from "../utils/calculator";
+import {
+  saveMemory,
+  resetMemory,
+  getMemory,
+  loadMemory,
+} from "../utils/memory";
 import CalculatorBody from "../components/CalculatorBody";
 import CalculatorHead from "../components/CalculatorHead";
-import { resetScreen } from "../utils/layout";
 
 function Calculator() {
   const [input, setInput] = useState("0");
@@ -12,7 +17,10 @@ function Calculator() {
     operand2: "",
     operator: "",
   });
-  const [memory, setMemory] = useState([]);
+  const [memory, setMemory] = useState({
+    result: "",
+    resultArray: [],
+  });
   const [error, setError] = useState({
     message: "",
     state: false,
@@ -25,8 +33,8 @@ function Calculator() {
       setInput(formula.operand2);
     }
 
-    if (memory.length > 0) {
-      const value = memory.pop();
+    if (memory.result) {
+      const value = getMemory(memory, setMemory);
       setFormula((prev) => {
         return { ...prev, operand1: value, operand2: "" };
       });
@@ -34,6 +42,8 @@ function Calculator() {
 
     if (formula.operator) {
       setSubInput(formula.operand1 + formula.operator);
+    } else {
+      setSubInput("");
     }
   }, [formula]);
 
@@ -43,15 +53,22 @@ function Calculator() {
     setSubInput(() => {
       return formula.operand1 + formula.operator + formula.operand2 + "=";
     });
-    setMemory((prev) => [...prev, result]);
+    saveMemory(memory, setMemory, result);
   };
 
   const handleReset = () => {
+    resetMemory(memory, setMemory);
     resetFormula(setFormula);
-    resetScreen(setInput, setSubInput);
     setError({
       message: "",
       state: false,
+    });
+  };
+
+  const handleloadMemory = () => {
+    loadMemory(memory, setMemory);
+    setFormula((prev) => {
+      return { ...prev, operand1: memory.result };
     });
   };
 
@@ -63,6 +80,7 @@ function Calculator() {
         setError={setError}
         calculate={handleCalculate}
         reset={handleReset}
+        load={handleloadMemory}
       />
     </div>
   );

@@ -54,5 +54,4 @@ function resetFormula(setFormula) {
     operand2: "",
   });
 }
-
 export { calculator, resetFormula };

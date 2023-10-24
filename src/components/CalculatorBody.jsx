@@ -5,7 +5,7 @@ import {
 } from "../utils/constants";
 import Button from "./Button";
 
-function CalculatorBody({ setFormula, setError, calculate, reset }) {
+function CalculatorBody({ setFormula, setError, calculate, reset, load }) {
   const handleNumClick = (value) => {
     setFormula((prev) => {
       const temp = { ...prev };
@@ -27,10 +27,12 @@ function CalculatorBody({ setFormula, setError, calculate, reset }) {
       if (value === "CE") {
         reset();
       } else if (value === "MR") {
+        load();
       } else if (value === "=") {
         calculate();
       } else if (value === ".") {
       } else if (value === "+/-") {
+        reverseSign();
       } else {
         setFormula((prev) => {
           return { ...prev, operator: value };
@@ -41,6 +43,23 @@ function CalculatorBody({ setFormula, setError, calculate, reset }) {
         return { state: true, message: `Err: ${err.message}` };
       });
     }
+  };
+
+  const reverseSign = () => {
+    setFormula((prev) => {
+      const temp = { ...prev };
+      if (!temp.operand2) {
+        if (temp.operand1 !== "0") {
+          temp.operand1 = temp.operand1 * -1;
+        }
+      } else {
+        if (String(temp.operand2) !== "") {
+          temp.operand2 = temp.operand2 * -1;
+        }
+      }
+      console.log(temp);
+      return temp;
+    });
   };
 
   return (
