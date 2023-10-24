@@ -66,14 +66,14 @@ function CalculatorBody({ setFormula, setError, calculate, reset, load }) {
     setFormula((prev) => {
       const temp = { ...prev };
       if (!temp.operator) {
-        if (!temp.operand1.includes(".")) {
+        if (!String(temp.operand1).includes(".")) {
           temp.operand1 += ".";
         }
       } else {
         if (temp.operand2 === "") {
           temp.operand2 = "0";
         }
-        if (!temp.operand2.includes(".")) {
+        if (!String(temp.operand2).includes(".")) {
           temp.operand2 += ".";
         }
       }
