@@ -31,6 +31,7 @@ function CalculatorBody({ setFormula, setError, calculate, reset, load }) {
       } else if (value === "=") {
         calculate();
       } else if (value === ".") {
+        addDot();
       } else if (value === "+/-") {
         reverseSign();
       } else {
@@ -57,7 +58,25 @@ function CalculatorBody({ setFormula, setError, calculate, reset, load }) {
           temp.operand2 = temp.operand2 * -1;
         }
       }
-      console.log(temp);
+      return temp;
+    });
+  };
+
+  const addDot = () => {
+    setFormula((prev) => {
+      const temp = { ...prev };
+      if (!temp.operator) {
+        if (!temp.operand1.includes(".")) {
+          temp.operand1 += ".";
+        }
+      } else {
+        if (temp.operand2 === "") {
+          temp.operand2 = "0";
+        }
+        if (!temp.operand2.includes(".")) {
+          temp.operand2 += ".";
+        }
+      }
       return temp;
     });
   };

@@ -41,7 +41,7 @@ function Calculator() {
     }
 
     if (formula.operator) {
-      setSubInput(formula.operand1 + formula.operator);
+      setSubInput(Number(formula.operand1) + formula.operator);
     } else {
       setSubInput("");
     }
@@ -51,7 +51,12 @@ function Calculator() {
     const result = calculator(formula);
     setInput(result);
     setSubInput(() => {
-      return formula.operand1 + formula.operator + formula.operand2 + "=";
+      return (
+        Number(formula.operand1) +
+        formula.operator +
+        Number(formula.operand2) +
+        "="
+      );
     });
     saveMemory(memory, setMemory, result);
   };
