@@ -1,6 +1,6 @@
 function calculator(formula) {
   const { operand1, operand2, operator } = formula;
-  checkFormula(operand1, operator, operand2);
+  checkFormula(operand1, operand2, operator);
   const num1 = Number(operand1);
   const num2 = Number(operand2);
   let resultValue = 0;
@@ -28,10 +28,10 @@ function calculator(formula) {
 
 function checkFormula(oper1, oper2, operator) {
   console.log(oper1, oper2, operator);
-  if (!oper2) {
-    throw new Error("operand-required");
-  } else if (!operator) {
+  if (!operator) {
     throw new Error("operator-required");
+  } else if (!oper2) {
+    throw new Error("operand-required");
   } else {
     return true;
   }

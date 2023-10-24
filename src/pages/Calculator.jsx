@@ -12,6 +12,7 @@ function Calculator() {
     operand2: "",
     operator: "",
   });
+  const [memory, setMemory] = useState([]);
   const [error, setError] = useState({
     message: "",
     state: false,
@@ -24,6 +25,13 @@ function Calculator() {
       setInput(formula.operand2);
     }
 
+    if (memory.length > 0) {
+      const value = memory.pop();
+      setFormula((prev) => {
+        return { ...prev, operand1: value, operand2: "" };
+      });
+    }
+
     if (formula.operator) {
       setSubInput(formula.operand1 + formula.operator);
     }
@@ -32,7 +40,10 @@ function Calculator() {
   const handleCalculate = () => {
     const result = calculator(formula);
     setInput(result);
-    setSubInput((prev) => prev + formula.operand2 + "=");
+    setSubInput(() => {
+      return formula.operand1 + formula.operator + formula.operand2 + "=";
+    });
+    setMemory((prev) => [...prev, result]);
   };
 
   const handleReset = () => {
