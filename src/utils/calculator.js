@@ -1,6 +1,9 @@
-function calculator(formula) {
+import { checkFormula } from "./formula";
+
+// 계산 수행 및 결과 확인
+function calculate(formula) {
   const { operand1, operand2, operator } = formula;
-  checkFormula(operand1, operand2, operator);
+  checkFormula(operand2, operator);
   const num1 = Number(operand1);
   const num2 = Number(operand2);
   let resultValue = 0;
@@ -9,7 +12,7 @@ function calculator(formula) {
     resultValue = num1 % num2;
   } else if (operator === "/") {
     if (num2 === 0) {
-      throw new Error("deo-is-zero");
+      throw new Error("Deo-Is-Zero");
     }
     resultValue = num1 / num2;
   } else if (operator === "x") {
@@ -19,22 +22,11 @@ function calculator(formula) {
   } else if (operator === "-") {
     resultValue = num1 - num2;
   } else {
-    throw new Error("no-operator");
+    throw new Error("Wrong-Input");
   }
 
   resultValue = checkResult(resultValue);
   return resultValue;
-}
-
-function checkFormula(oper1, oper2, operator) {
-  console.log(oper1, oper2, operator);
-  if (!operator) {
-    throw new Error("operator-required");
-  } else if (!oper2) {
-    throw new Error("operand-required");
-  } else {
-    return true;
-  }
 }
 
 function checkResult(num) {
@@ -42,16 +34,11 @@ function checkResult(num) {
     throw new Error("NaN");
   } else if (!Number.isInteger(num)) {
     return Number(num.toFixed(3));
+  } else if (num === -0) {
+    return 0;
   }
 
-  return num;
+  return Number(num);
 }
 
-function resetFormula(setFormula) {
-  setFormula({
-    operand1: "0",
-    operator: "",
-    operand2: "",
-  });
-}
-export { calculator, resetFormula };
+export { calculate };

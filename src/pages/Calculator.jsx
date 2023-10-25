@@ -1,13 +1,21 @@
 import React, { useEffect, useState } from "react";
-import { calculator, resetFormula } from "../utils/calculator";
+import CalculatorBody from "../components/CalculatorBody";
+import CalculatorHead from "../components/CalculatorHead";
+import { calculate } from "../utils/calculator";
+import { resetFormula, setOperandFromMemory } from "../utils/formula";
+import {
+  checkMainScreenLength,
+  setMainScreen,
+  setSubScreen,
+  setScreenWithResult,
+} from "../utils/screen";
 import {
   saveMemory,
   resetMemory,
   getMemory,
   loadMemory,
 } from "../utils/memory";
-import CalculatorBody from "../components/CalculatorBody";
-import CalculatorHead from "../components/CalculatorHead";
+import { resetError } from "../utils/error";
 
 function Calculator() {
   const [input, setInput] = useState("0");
@@ -27,54 +35,35 @@ function Calculator() {
   });
 
   useEffect(() => {
-    if (!formula.operand2) {
-      setInput(formula.operand1);
-    } else {
-      setInput(formula.operand2);
+    setMainScreen(formula, setInput);
+
+    if (memory.result !== "") {
+      const memoryValue = getMemory(memory, setMemory);
+      setOperandFromMemory(setFormula, memoryValue);
     }
 
-    if (memory.result) {
-      const value = getMemory(memory, setMemory);
-      setFormula((prev) => {
-        return { ...prev, operand1: value, operand2: "" };
-      });
-    }
-
-    if (formula.operator) {
-      setSubInput(Number(formula.operand1) + formula.operator);
-    } else {
-      setSubInput("");
-    }
+    setSubScreen(formula, setSubInput);
   }, [formula]);
 
+  useEffect(() => {
+    checkMainScreenLength(input, setError);
+  }, [input]);
+
   const handleCalculate = () => {
-    const result = calculator(formula);
-    setInput(result);
-    setSubInput(() => {
-      return (
-        Number(formula.operand1) +
-        formula.operator +
-        Number(formula.operand2) +
-        "="
-      );
-    });
+    const result = calculate(formula);
+    setScreenWithResult(setInput, setSubInput, formula, result);
     saveMemory(memory, setMemory, result);
   };
 
   const handleReset = () => {
     resetMemory(memory, setMemory);
     resetFormula(setFormula);
-    setError({
-      message: "",
-      state: false,
-    });
+    resetError(setError);
   };
 
   const handleloadMemory = () => {
     loadMemory(memory, setMemory);
-    setFormula((prev) => {
-      return { ...prev, operand1: memory.result };
-    });
+    setOperandFromMemory(setFormula, memory.result);
   };
 
   return (

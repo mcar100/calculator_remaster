@@ -1,9 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
+import Button from "./Button";
+import {
+  setOperator,
+  setOperand,
+  reverseOperandSign,
+  addOperandDot,
+} from "../utils/formula";
+import { errorHandler } from "../utils/error";
 import {
   BUTTON_LIST as buttonList,
   REGEX_NUM as regexNum,
 } from "../utils/constants";
-import Button from "./Button";
 
 function CalculatorBody({
   setFormula,
@@ -17,19 +24,7 @@ function CalculatorBody({
     if (isError) {
       return;
     }
-    setFormula((prev) => {
-      const temp = { ...prev };
-      if (!temp.operator) {
-        if (temp.operand1 === "0") {
-          temp.operand1 = value;
-        } else {
-          temp.operand1 += value;
-        }
-      } else {
-        temp.operand2 += value;
-      }
-      return temp;
-    });
+    setOperand(setFormula, value);
   };
 
   const handleBtnClick = (value) => {
@@ -45,54 +40,15 @@ function CalculatorBody({
       } else if (value === "=") {
         calculate();
       } else if (value === ".") {
-        addDot();
+        addOperandDot(setFormula);
       } else if (value === "+/-") {
-        reverseSign();
+        reverseOperandSign(setFormula);
       } else {
-        setFormula((prev) => {
-          return { ...prev, operator: value };
-        });
+        setOperator(setFormula, value);
       }
     } catch (err) {
-      setError(() => {
-        return { state: true, message: `Err: ${err.message}` };
-      });
+      errorHandler(err, setError);
     }
-  };
-
-  const reverseSign = () => {
-    setFormula((prev) => {
-      const temp = { ...prev };
-      if (!temp.operand2) {
-        if (temp.operand1 !== "0") {
-          temp.operand1 = temp.operand1 * -1;
-        }
-      } else {
-        if (String(temp.operand2) !== "") {
-          temp.operand2 = temp.operand2 * -1;
-        }
-      }
-      return temp;
-    });
-  };
-
-  const addDot = () => {
-    setFormula((prev) => {
-      const temp = { ...prev };
-      if (!temp.operator) {
-        if (!String(temp.operand1).includes(".")) {
-          temp.operand1 += ".";
-        }
-      } else {
-        if (temp.operand2 === "") {
-          temp.operand2 = "0";
-        }
-        if (!String(temp.operand2).includes(".")) {
-          temp.operand2 += ".";
-        }
-      }
-      return temp;
-    });
   };
 
   return (

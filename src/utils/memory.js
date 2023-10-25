@@ -1,5 +1,10 @@
+import { MAX_MEMORY_SIZE as maxMemorySize } from "./constants";
+
+// 메모리 관련 함수 모음
+
+// 결과 값을 배열 마지막에 저장, 사이즈 초과 시 가장 먼저 들어온 값을 제거
 function saveMemory(memory, setMemory, value) {
-  if (memory.resultArray.length < 9) {
+  if (memory.resultArray.length < maxMemorySize) {
     setMemory((prev) => {
       const temp = { ...prev };
       temp.result = value;
@@ -26,14 +31,6 @@ function getMemory(memory, setMemory) {
   return value;
 }
 
-function resetMemory(memory, setMemory) {
-  if (memory.result) {
-    setMemory((prev) => {
-      return { ...prev, result: "" };
-    });
-  }
-}
-
 function loadMemory(memory, setMemory) {
   if (memory.resultArray.length > 0) {
     const value = memory.resultArray.pop();
@@ -43,8 +40,16 @@ function loadMemory(memory, setMemory) {
       resultArray: [...prev.resultArray],
     }));
   } else {
-    throw new Error("Memory-is-empty");
+    throw new Error("MR-Is-Empty");
   }
 }
 
-export { saveMemory, getMemory, resetMemory, loadMemory };
+function resetMemory(memory, setMemory) {
+  if (memory.result !== "") {
+    setMemory((prev) => {
+      return { ...prev, result: "" };
+    });
+  }
+}
+
+export { saveMemory, getMemory, loadMemory, resetMemory };
