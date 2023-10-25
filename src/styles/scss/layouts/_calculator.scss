@@ -10,11 +10,23 @@
       @include mix.flex-container(80%, 70%);
       .screen--sub {
         @include mix.box-style(100%, 40%);
-        @include mix.font-style(20px, normal);
+        @include mix.font-style(20px, normal, c.$grey);
+
+        &.screen--small {
+          @include mix.font-style(15px, normal, c.$grey);
+          line-height: 95%;
+          word-break: break-all;
+        }
       }
       .screen--main {
         @include mix.box-style(100%, 60%);
         @include mix.font-style(40px);
+
+        &.screen--small {
+          @include mix.font-style(26px);
+          line-height: 95%;
+          word-break: break-all;
+        }
       }
     }
   }

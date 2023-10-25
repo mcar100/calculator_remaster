@@ -190,7 +190,14 @@ button:hover {
   background-color: #fff;
   font-size: 20px;
   font-weight: normal;
-  color: #000;
+  color: #616161;
+}
+.calculator-container .calculator-head .screen-container .screen--sub.screen--small {
+  font-size: 15px;
+  font-weight: normal;
+  color: #616161;
+  line-height: 95%;
+  word-break: break-all;
 }
 .calculator-container .calculator-head .screen-container .screen--main {
   width: 100%;
@@ -199,6 +206,13 @@ button:hover {
   font-size: 40px;
   font-weight: bold;
   color: #000;
+}
+.calculator-container .calculator-head .screen-container .screen--main.screen--small {
+  font-size: 26px;
+  font-weight: bold;
+  color: #000;
+  line-height: 95%;
+  word-break: break-all;
 }
 .calculator-container .calculator-body {
   width: 100%;
