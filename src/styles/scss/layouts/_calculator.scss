@@ -8,7 +8,7 @@
     @include mix.flex-container(100%, 25%, c.$background, $fjc: flex-end);
     @include mix.border(0);
     .screen-container {
-      @include mix.flex-container(80%, 80%);
+      @include mix.flex-container(80%, 79%);
       @include mix.border(3px, solid, c.$metal, 5px);
       .screen--sub {
         @include mix.box-style(100%, 40%, c.$screen);
