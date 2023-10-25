@@ -4,7 +4,7 @@
 
 ### 프로젝트 설명
 
-notion: [프로젝트 설명 이동](https://www.notion.so/Project-500caf8a4ab34852a6c092418cd98516?pvs=4)
+Notion: [프로젝트 설명 이동](https://www.notion.so/Project-500caf8a4ab34852a6c092418cd98516?pvs=4)
 
 ### Netlify 배포
 [![Netlify Status](https://api.netlify.com/api/v1/badges/fedc340f-0ad4-479c-8a7e-469070bac86a/deploy-status)](https://app.netlify.com/sites/seob-calculator-remaster/deploys) 
