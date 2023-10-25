@@ -6,6 +6,9 @@
 
 [notion/계산기](https://www.notion.so/Project-500caf8a4ab34852a6c092418cd98516?pvs=4)
 
+### Netlify 배포
+계산기 url: ([![Netlify Status](https://api.netlify.com/api/v1/badges/fedc340f-0ad4-479c-8a7e-469070bac86a/deploy-status)](https://app.netlify.com/sites/seob-calculator-remaster/deploys))
+
 ### 기술 스택
 
 - HTML/CSS/JS
