@@ -9,7 +9,7 @@
 
 /* button */
 button {
-  @include mix.box-style(65px, 50px, c.$dark);
+  @include mix.box-style(65px, 50px, c.$grey);
   @include mix.border($w: 1px, $r: 8px, $c: c.$metal);
   @include mix.font-style(15px, $fc: c.$white);
   @include mix.grid-self();

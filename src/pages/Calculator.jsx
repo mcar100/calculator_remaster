@@ -69,6 +69,7 @@ function Calculator() {
   return (
     <div className="calculator-container">
       <CalculatorHead input={input} error={error} subInput={subInput} />
+      <div className="output-bottom"></div>
       <CalculatorBody
         setFormula={setFormula}
         isError={error.state}

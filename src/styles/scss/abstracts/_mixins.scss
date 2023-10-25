@@ -67,10 +67,18 @@
   align-self: $as;
 }
 
-@mixin flex-container($w, $h, $bgc: c.$basic, $rc: c.$reverse, $fd: column) {
+@mixin flex-container(
+  $w,
+  $h,
+  $bgc: c.$basic,
+  $rc: c.$reverse,
+  $fd: column,
+  $fjc: center,
+  $fai: center
+) {
   @include box-style($w, $h, $bgc);
   @include border($c: $rc);
-  @include flexbox($d: $fd);
+  @include flexbox($d: $fd, $jc: $fjc, $ai: $fai);
 }
 
 // /* grid */
