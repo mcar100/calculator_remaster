@@ -4,12 +4,12 @@
 
 ### 프로젝트 설명
 
-notion/계산기: [notion 이동](https://www.notion.so/Project-500caf8a4ab34852a6c092418cd98516?pvs=4)
+notion: [프로젝트 설명 이동](https://www.notion.so/Project-500caf8a4ab34852a6c092418cd98516?pvs=4)
 
 ### Netlify 배포
 [![Netlify Status](https://api.netlify.com/api/v1/badges/fedc340f-0ad4-479c-8a7e-469070bac86a/deploy-status)](https://app.netlify.com/sites/seob-calculator-remaster/deploys) 
 
-Netlify/계산기 URL: [site 이동](https://seob-calculator-remaster.netlify.app/)
+Netlify: [배포사이트 이동](https://seob-calculator-remaster.netlify.app/)
 
 ### 기술 스택
 
