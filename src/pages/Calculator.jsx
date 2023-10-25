@@ -43,6 +43,7 @@ function Calculator() {
     }
 
     setSubScreen(formula, setSubInput);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [formula]);
 
   useEffect(() => {
