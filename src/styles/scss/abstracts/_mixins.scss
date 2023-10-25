@@ -1,0 +1,111 @@
+@use "variables" as c;
+@mixin position($p: absolute, $t: 0, $b: 0, $l: 0, $r: 0) {
+  position: $p;
+  top: $t;
+  bottom: $b;
+  left: $l;
+  right: $r;
+}
+
+@mixin margin($a: 0px, $t: 0px, $b: 0px, $l: 0px, $r: 0px) {
+  @if ($a>0) {
+  } @else {
+    margin-top: $t;
+    margin-bottom: $b;
+    margin-left: $l;
+    margin-right: $r;
+  }
+}
+
+@mixin padding($a: 0px, $t: 0px, $b: 0px, $l: 0px, $r: 0px) {
+  @if ($a>0) {
+    padding: $a;
+  } @else {
+    padding-top: $t;
+    padding-bottom: $b;
+    padding-left: $l;
+    padding-right: $r;
+  }
+}
+
+@mixin box-style($w: 100px, $h: 100px, $bgc: c.$basic) {
+  width: $w;
+  height: $h;
+  background-color: $bgc;
+}
+
+@mixin font-style($fs: 10px, $fw: bold, $fc: c.$black) {
+  font-size: $fs;
+  font-weight: $fw;
+  color: $fc;
+}
+
+// /* border */
+@mixin border($w: 1px, $s: solid, $c: c.$reverse, $r: 1px) {
+  border: $w $s $c;
+  border-radius: $r;
+}
+
+@mixin border-radius($tl: 0px, $tr: 0px, $bl: 0px, $br: 0px) {
+  border-top-left-radius: $tl;
+  border-top-right-radius: $tr;
+  border-bottom-left-radius: $bl;
+  border-bottom-right-radius: $br;
+}
+
+// /* flex */
+@mixin flexbox($d: row, $jc: center, $ai: center, $g: 0px) {
+  display: flex;
+  flex-direction: $d;
+  justify-content: $jc;
+  align-items: $ai;
+  gap: $g;
+}
+
+@mixin flex-self($js: center, $as: center) {
+  justify-self: $js;
+  align-self: $as;
+}
+
+@mixin flex-container(
+  $w,
+  $h,
+  $bgc: c.$basic,
+  $rc: c.$reverse,
+  $fd: column,
+  $fjc: center,
+  $fai: center
+) {
+  @include box-style($w, $h, $bgc);
+  @include border($c: $rc);
+  @include flexbox($d: $fd, $jc: $fjc, $ai: $fai);
+}
+
+// /* grid */
+@mixin gridbox-area(
+  $a: false,
+  $js: center,
+  $ai: center,
+  $g: 0px,
+  $gtr: false,
+  $gtc: false
+) {
+  display: grid;
+  @if ($a) {
+    grid-template-areas: $a;
+  }
+  @if ($gtr) {
+    grid-template-rows: $gtr;
+  }
+  @if ($gtc) {
+    grid-template-columns: $gtc;
+  }
+  justify-content: $js;
+  align-items: $ai;
+  gap: $g;
+}
+
+@mixin grid-self($js: center, $as: center) {
+  justify-self: $js;
+  align-self: $as;
+}
