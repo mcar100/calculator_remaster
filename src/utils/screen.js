@@ -33,7 +33,9 @@ function setScreenWithResult(setInput, setSubInput, formula, result) {
 
 function checkMainScreenLength(input, setError) {
   try {
-    if (input.toLocaleString().length > maxInputSize) {
+    if (Number(input).toLocaleString().length < maxInputSize) {
+      return;
+    } else {
       throw new Error("Too-Long-Num");
     }
   } catch (err) {
